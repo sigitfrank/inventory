@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Email\EmailController;
+use App\Http\Controllers\Products\ProductsController;
+use App\Http\Controllers\Transactions\TransactionController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes(['verify' => true]);
+
+Route::middleware('auth', 'verified')->group(function () {
+    // hanya user yang verified yang bisa mengakses route ini
+    Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+    Route::get('/kirim-email', [EmailController::class, 'index']);
+
+    // Products
+    Route::get('/products', [ProductsController::class, 'index'])->name('products.index');
+    Route::get('/products/create', [ProductsController::class, 'create'])->name('products.create');
+    Route::post('/products', [ProductsController::class, 'store'])->name('products.store');
+    Route::delete('/products/{product}', [ProductsController::class, 'destroy'])->name('products.destroy');
+    
+    // Transactions
+    Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');
+    Route::get('/transactions/create', [TransactionController::class, 'create'])->name('transactions.create');
+    Route::post('/transactions', [TransactionController::class, 'store'])->name('transactions.store');
+    Route::delete('/transactions/{transaction}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
+});
