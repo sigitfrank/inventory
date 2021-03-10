@@ -1,8 +1,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function(event) {
-    $('#transactions-table').DataTable({
+    $('#users-table').DataTable({
         "bInfo": false,
     })
 })
 </script>
-@include('scripts.base-js')

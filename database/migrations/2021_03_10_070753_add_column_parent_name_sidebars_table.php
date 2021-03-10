@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnSidebar extends Migration
+class AddColumnParentNameSidebarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,7 @@ class AddColumnSidebar extends Migration
     public function up()
     {
         Schema::table('sidebars', function (Blueprint $table) {
-            //
-            $table->boolean('has_child')->nullable()->change();
+            $table->string('parent_name')->nullable();
         });
     }
 
@@ -26,8 +25,6 @@ class AddColumnSidebar extends Migration
      */
     public function down()
     {
-        Schema::table('sidebar', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }

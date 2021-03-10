@@ -8,12 +8,14 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\DB;
 
+
 use Illuminate\Support\Facades\Auth;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     protected $user;
+
     public function getUserData()
     {
         $this->middleware(function ($request, $next) {
@@ -25,14 +27,13 @@ class Controller extends BaseController
 
     public function sidebar()
     {
-        $parent_sidebar = DB::table('sidebar')
-            ->where('parent_module', '=', null)
+        $parent_sidebar = DB::table('sidebars')
+            ->where('parent_module', '=', 0)
             ->get();
-
         $children_sidebar = [];
         $index = 0;
         foreach ($parent_sidebar as $value) {
-            $child_sidebar = DB::table('sidebar')
+            $child_sidebar = DB::table('sidebars')
                 ->where('parent_module', '=', $value->id)
                 ->get();
             foreach ($child_sidebar as $value_child) {
@@ -53,13 +54,20 @@ class Controller extends BaseController
 
     public function getView($data_view)
     {
+        $user_has_access = DB::table('user_access_module')->where('user_id', $this->user->id)->get();
+        $user_access = [];
+        foreach ($user_has_access as $key => $user) {
+            $user_access[$key] = $user;
+        }
         $data = $data_view['data'] ?? [];
         $sidebars = $this->sidebar();
+
         return view($data_view['page'], [
             'sidebar_parents' => $sidebars['parent_sidebar'],
             'sidebars_children' => $sidebars['sidebar_children'],
             'data' => $data,
             'user' => $this->user,
+            'user_access'=>$user_access
         ]);
     }
 }

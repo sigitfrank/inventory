@@ -14,8 +14,6 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected $sidebar_parents;
-    protected $sidebar_children;
     protected $user;
     public function __construct()
     {

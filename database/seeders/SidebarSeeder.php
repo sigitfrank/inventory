@@ -16,12 +16,13 @@ class SidebarSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('sidebar')->insert(
+        DB::table('sidebars')->insert(
             [
                 'nama_module' => 'Create',
-                'parent_module' => 5,
+                'parent_module' => 9,
+                'has_child' => 0,
                 'icon' => '',
-                'path' => 'transactions.create',
+                'path' => 'modules/create',
             ]
         );
     }

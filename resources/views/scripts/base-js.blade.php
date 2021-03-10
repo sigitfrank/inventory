@@ -1,4 +1,6 @@
 <script>
+document.addEventListener('DOMContentLoaded', function(event) {
+
     // MODAL DELETE
     const spanModalDeleteName = document.querySelector('#s_name_modal_delete')
     const spanModalDeleteId = document.querySelector('#s_id_modal_delete')
@@ -69,4 +71,5 @@
     btnDeleteModal.addEventListener('click', function(){
         deleteModal(parseInt(spanModalDeleteId.textContent))
     })
+})
 </script>

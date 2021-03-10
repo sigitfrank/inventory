@@ -17,9 +17,6 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->user = $this->getUserData();
-        $sidebars = $this->sidebar();
-        $this->sidebar_parents = $sidebars['parent_sidebar'];
-        $this->sidebar_children = $sidebars['sidebar_children'];
     }
 
     /**
@@ -29,10 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index', [
-            'sidebar_parents' => $this->sidebar_parents,
-            'sidebars_children' => $this->sidebar_children,
-            'user' => $this->user,
-        ]);
+        $data_view = [
+            'page' => 'dashboard.index',
+        ];
+        return $this->getView($data_view);
+      
     }
 }

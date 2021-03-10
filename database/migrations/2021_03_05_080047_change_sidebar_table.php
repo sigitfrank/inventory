@@ -13,7 +13,7 @@ class ChangeSidebarTable extends Migration
      */
     public function up()
     {
-        Schema::table('sidebar', function (Blueprint $table) {
+        Schema::table('sidebars', function (Blueprint $table) {
             //
             $table->integer('parent_module')->change();
         });

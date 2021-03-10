@@ -13,7 +13,7 @@ class CreateSidebarTable extends Migration
      */
     public function up()
     {
-        Schema::create('sidebar', function (Blueprint $table) {
+        Schema::create('sidebars', function (Blueprint $table) {
             $table->id();
             $table->string('nama_module')->nullable();
             $table->boolean('parent_module')->nullable();

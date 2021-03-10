@@ -9,8 +9,6 @@ use Illuminate\Http\Request;
 class ProductsController extends Controller
 {
 
-    protected $sidebar_parents;
-    protected $sidebar_children;
     protected $user;
     public function __construct()
     {
