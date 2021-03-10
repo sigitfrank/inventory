@@ -59,7 +59,7 @@
                                     <td class="mdl-data-table__cell--non-numeric">
                                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal">Edit</button>
                                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red btn_delete_modal" data-id="{{$transaction->id}}" 
-                                            data-name="{{$transaction->product_name}}">Delete</button>
+                                            data-name="{{$transaction->product_name}}" data-title="Transaction">Delete</button>
                                     </td>
                                 </tr>
                                 @endforeach

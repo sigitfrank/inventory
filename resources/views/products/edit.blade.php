@@ -10,7 +10,7 @@
          <main class="mdl-layout__content mdl-color--grey-100">
              <div class="row">
                  <div class="col-md-12">
-                     <h1 class="m-3">Add Product</h1>
+                     <h1 class="m-3">Edit Product - PS 5</h1>
                      <hr>
                  </div>
              </div>
@@ -18,11 +18,12 @@
                  <div class="col-md-6">
                     <div class="card mt-3">
                         <div class="card-body">
-                              <form action="{{route('products/store')}}" class="form" method="post">
+                              <form action="{{route('products/update', $data->id)}}" class="form" method="post">
                                   @csrf
+                                  @method('put')
                                 <div class="form-group">
                                     <label for="product_name">Product Name</label>
-                                    <input type="text" class="form-control" name="product_name"  value="{{ old('product_name') }}"  id="product_name" placeholder="product...">
+                                    <input type="text" class="form-control" name="product_name"  value="{{ old('product_name') ? old('product_name') : $data->product_name }}"  id="product_name" placeholder="ex: Buku">
                                     @error('product_name')
                                         <span class="text-color--secondary">{{ $message }}</span>
                                     @enderror
@@ -30,34 +31,34 @@
                                 <div class="form-group">
                                     <label for="type">Type</label>
                                     <select class="form-control" id="type" name="type">
-                                        <option>-</option>
-                                        <option value="Bahan baku">Bahan Baku</option>
-                                        <option value="Barang Jadi">Barang Jadi</option>
+                                        <option value="">-</option>
+                                        <option value="Barang Baku" {{$data->type == 'Barang Baku' ? 'selected' : ''}}>Barang Baku</option>
+                                        <option value="Barang Jadi" {{$data->type == 'Bahan Jadi' ? 'selected' : ''}}>Barang Jadi</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="quantity">Quantity</label>
-                                    <input type="text" class="form-control" name="quantity" id="quantity"  value="{{ old('quantity') }}"  placeholder="quantity...">
+                                    <input type="text" class="form-control" name="quantity" id="quantity" value="{{ old('quantity') ? old('quantity') : $data->quantity }}"  placeholder="ex: 10">
                                      @error('quantity')
                                         <span class="text-color--secondary">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="unit">Unit</label>
-                                    <input type="text" class="form-control" name="unit" id="unit"  value="{{ old('unit') }}"  placeholder="unit...">
+                                    <input type="text" class="form-control" name="unit" id="unit"  value="{{ old('unit') ? old('unit') : $data->unit }}" placeholder="ex: pcs">
                                      @error('unit')
                                         <span class="text-color--secondary">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="price">Price</label>
-                                    <input type="text" class="form-control" name="price" id="price" value="{{ old('price') }}" placeholder="price...">
+                                    <input type="text" class="form-control" name="price" id="price" value="{{ old('price') ? old('price') : $data->price }}" placeholder="ex: 7000000">
                                      @error('price')
                                         <span class="text-color--secondary">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-dark btn-lg">Add Product</button>
+                                    <button type="submit" class="btn btn-dark btn-lg">Update Product</button>
                                 </div>
                             </form>
                         </div>

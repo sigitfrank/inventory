@@ -37,9 +37,9 @@
                                 <div class="form-group">
                                     <label for="type">Type</label>
                                     <select class="form-control" id="type" name="type">
-                                        <option>-</option>
-                                        <option>Pembelian</option>
-                                        <option>Penjualan</option>
+                                        <option value="">-</option>
+                                        <option value="Pembelian">Pembelian</option>
+                                        <option value="Penjualan">Penjualan</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

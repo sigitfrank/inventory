@@ -3,7 +3,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalDeleteLabel">Delete Product 
+        <h5 class="modal-title" id="modalDeleteLabel">Delete <span id="modal_title">-</span> 
           <span class="font-weight-bold" id="s_name_modal_delete">nama_element</span>-<span class="font-weight-bold" id="s_id_modal_delete">id_element</span>?
         </h5>
       </div>

@@ -39,6 +39,5 @@ document.addEventListener('DOMContentLoaded', function(event) {
             toggleUserManagement({idUser, idModule})
         })
     })
-    
 })
 </script>

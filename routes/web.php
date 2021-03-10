@@ -34,6 +34,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/products', [ProductsController::class, 'index'])->name('products');
     Route::get('/products/create', [ProductsController::class, 'create'])->name('products/create');
     Route::post('/products', [ProductsController::class, 'store'])->name('products/store');
+    Route::get('/products/{product}/edit', [ProductsController::class, 'edit'])->name('products/edit');
+    Route::put('/products/{product}', [ProductsController::class, 'update'])->name('products/update');
     Route::delete('/products/{product}', [ProductsController::class, 'destroy'])->name('products/destroy');
     
     // Transactions
@@ -51,4 +53,5 @@ Route::middleware('auth', 'verified')->group(function () {
     // Module Management
     Route::get('/modules', [ModuleController::class, 'index'])->name('modules');
     Route::get('/modules/create', [ModuleController::class, 'create'])->name('modules/create');
+    Route::delete('/modules/{module}', [ModuleController::class, 'destroy'])->name('modules/destroy');
 });

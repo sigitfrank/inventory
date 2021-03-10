@@ -53,8 +53,25 @@ class ModuleController extends Controller
         //
     }
 
-    public function destroy(Module $module)
+    public function destroy(Sidebar $module)
     {
-        //
+        
+        $is_module_deleted = Sidebar::destroy($module->id);
+        if ($is_module_deleted) {
+            return  json_encode(
+                [
+                    'icon'=>'success',
+                    'title'=> 'Delete',
+                    'message'=>'Module deleted successfully',
+                ]
+            );
+        }
+        return  json_encode(
+            [
+                'icon'=>'error',
+                'title'=> 'Delete',
+                'message'=>'Module failed to delete',
+            ]
+        );
     }
 }

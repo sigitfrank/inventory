@@ -45,9 +45,9 @@ class ProductsController extends Controller
         ]);
         $isProductAdded = Product::create($request->all());
         if ($isProductAdded) {
-            return redirect(route('products.index'))->with('status', 'Product added succesfully')->with('status', true);
+            return redirect(route('products'))->with('alert', 'Product added succesfully')->with('status', true);
         }
-        return redirect(route('products.index'))->with('status', 'Product failed to add')->with('status', false);
+        return redirect(route('products'))->with('alert', 'Product failed to add')->with('status', false);
     }
 
 
@@ -57,10 +57,39 @@ class ProductsController extends Controller
 
     public function edit(Product $product)
     {
+        $data_view = [
+            'page' => 'products.edit',
+            'data' => $product
+        ];
+        return $this->getView($data_view);
     }
 
     public function update(Request $request, Product $product)
     {
+        $id_product = $product->id;
+        $request->validate([
+            'product_name' => 'required',
+            'type' => 'required',
+            'quantity' => 'required',
+            'unit' => 'required',
+            'price' => 'required'
+        ]);
+
+        $is_product_updated = Product::where('id', $id_product)
+        ->update(
+            [
+                'product_name' => $request->product_name,
+                'type' => $request->type,
+                'quantity' => $request->quantity,
+                'unit' => $request->unit,
+                'price' => $request->price,
+            ]
+        );
+        if ($is_product_updated) {
+            return redirect(route('products'))->with('alert', 'Product updated succesfully')->with('status', true);
+        }
+        return redirect(route('products'))->with('alert', 'Product failed to update')->with('status', false);
+        
     }
 
     public function destroy(Product $product)

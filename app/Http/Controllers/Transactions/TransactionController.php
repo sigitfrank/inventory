@@ -67,9 +67,9 @@ class TransactionController extends Controller
         ]);
         $is_transaction_added = Transaction::create($request->all());
         if ($is_transaction_added ) {
-            return redirect(route('transactions.index'))->with('alert', 'Transaction added succesfully')->with('status', true);
+            return redirect(route('transactions'))->with('alert', 'Transaction added succesfully')->with('status', true);
         }
-        return redirect(route('transactions.index'))->with('alert', 'Transaction failed to add')->with('status', false);
+        return redirect(route('transactions'))->with('alert', 'Transaction failed to add')->with('status', false);
     }
 
     /**

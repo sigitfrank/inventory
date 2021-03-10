@@ -47,12 +47,18 @@
                                         @endif 
                                     </td>
                                     <td class="mdl-data-table__cell--non-numeric"><span class="label label--mini color--{{$module->has_child ? 'green' : 'red'}}">{{$module->has_child}}</span></td>
-                                    <td class="mdl-data-table__cell--non-numeric"><i class="material-icons">{{$module->icon}}</i></td>
+                                    <td class="mdl-data-table__cell--non-numeric">
+                                        @if ($module->icon)
+                                            <i class="material-icons">{{$module->icon}}</i>
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
                                     <td class="mdl-data-table__cell--non-numeric">{{$module->path}}</td>
                                     <td class="mdl-data-table__cell--non-numeric">
                                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal">EDIT</button>
-                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red btn_delete_modal"  data-id="" 
-                                            data-name="">DELETE</button>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red btn_delete_modal" data-id="{{$module->id}}" 
+                                            data-name="{{$module->nama_module}}">DELETE</button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -71,5 +77,5 @@
 @endsection
 
 @section('scripts')
-    {{-- @include('scripts.products-js') --}}
+    @include('scripts.modules-js')
 @endsection

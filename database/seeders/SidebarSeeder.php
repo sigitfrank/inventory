@@ -20,8 +20,9 @@ class SidebarSeeder extends Seeder
             [
                 'nama_module' => 'Create',
                 'parent_module' => 9,
+                'parent_name' => 'Module Management',
                 'has_child' => 0,
-                'icon' => '',
+                'icon' => null,
                 'path' => 'modules/create',
             ]
         );

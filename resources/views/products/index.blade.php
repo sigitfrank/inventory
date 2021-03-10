@@ -12,11 +12,11 @@
         <div class="mdl-grid ui-tables">
             <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
                 <div class="mdl-card mdl-shadow--2dp">
-                    @if (session('alert'))
-                        <div class="alert {{session('status') ? 'alert-success' : 'alert-danger'}} p-3 text-dark font-weight-bold">
-                            {{ session('alert') }}
-                        </div>
-                    @endif 
+                        @if (session('alert'))
+                            <div class="alert {{session('status') ? 'alert-success' : 'alert-danger'}} p-3 text-dark font-weight-bold">
+                                {{session('alert') }}
+                            </div>
+                        @endif
                     <div class="mdl-card__title">
                         <h1 class="mdl-card__title-text">Product List</h1>
                     </div>
@@ -55,9 +55,9 @@
                                         <span class="label label--mini label__availability background-color--primary"></span>
                                     </td>
                                     <td class="mdl-data-table__cell--non-numeric">
-                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal">EDIT</button>
+                                        <a href="{{route('products/edit', $product->id)}}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal btn_edit_modal">EDIT</a>
                                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red btn_delete_modal"  data-id="{{$product->id}}" 
-                                            data-name="{{$product->product_name}}">DELETE</button>
+                                            data-name="{{$product->product_name}}" data-title="Product">DELETE</button>
                                     </td>
                                 </tr>
                                 @endforeach

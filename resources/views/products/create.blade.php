@@ -22,7 +22,7 @@
                                   @csrf
                                 <div class="form-group">
                                     <label for="product_name">Product Name</label>
-                                    <input type="text" class="form-control" name="product_name"  value="{{ old('product_name') }}"  id="product_name" placeholder="product...">
+                                    <input type="text" class="form-control" name="product_name"  value="{{ old('product_name') }}"  id="product_name" placeholder="ex: Buku">
                                     @error('product_name')
                                         <span class="text-color--secondary">{{ $message }}</span>
                                     @enderror
@@ -30,28 +30,28 @@
                                 <div class="form-group">
                                     <label for="type">Type</label>
                                     <select class="form-control" id="type" name="type">
-                                        <option>-</option>
-                                        <option>Bahan Baku</option>
-                                        <option>Barang Jadi</option>
+                                        <option value="">-</option>
+                                        <option value="Bahan Baku">Bahan Baku</option>
+                                        <option value="Bahan Jadi">Barang Jadi</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="quantity">Quantity</label>
-                                    <input type="text" class="form-control" name="quantity" id="quantity"  value="{{ old('quantity') }}"  placeholder="quantity...">
+                                    <input type="text" class="form-control" name="quantity" id="quantity"  value="{{ old('quantity') }}"  placeholder="ex: 10">
                                      @error('quantity')
                                         <span class="text-color--secondary">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="unit">Unit</label>
-                                    <input type="text" class="form-control" name="unit" id="unit"  value="{{ old('unit') }}"  placeholder="unit...">
+                                    <input type="text" class="form-control" name="unit" id="unit"  value="{{ old('unit') }}" placeholder="ex: pcs">
                                      @error('unit')
                                         <span class="text-color--secondary">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="price">Price</label>
-                                    <input type="text" class="form-control" name="price" id="price" value="{{ old('price') }}" placeholder="price...">
+                                    <input type="text" class="form-control" name="price" id="price" value="{{ old('price') }}" placeholder="ex: 7000000">
                                      @error('price')
                                         <span class="text-color--secondary">{{ $message }}</span>
                                     @enderror
