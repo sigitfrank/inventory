@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product\Product;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -43,9 +44,16 @@ class ProductsController extends Controller
             'unit' => 'required',
             'price' => 'required'
         ]);
+
+        $product = new Product();
         $isProductAdded = Product::create($request->all());
         if ($isProductAdded) {
-            return redirect(route('products'))->with('alert', 'Product added succesfully')->with('status', true);
+            $check_unit_product = $product->checkProduct($request, $isProductAdded->id);
+            if($check_unit_product){
+                return redirect(route('products'))->with('alert', 'Product added succesfully')->with('status', true);
+            } else{
+                return redirect(route('products'))->with('alert', 'Unit Product failed to add')->with('status', false);
+            }
         }
         return redirect(route('products'))->with('alert', 'Product failed to add')->with('status', false);
     }
@@ -111,5 +119,18 @@ class ProductsController extends Controller
                 'message'=>'Product failed to delete',
             ]
         );
+    }
+
+    public function getUnit(Request $request){
+        $product_name = $request->input('productName');
+        $user_id = $request->input('userId');
+        $get_units = DB::table('unit_products')
+        ->where('product_name', $product_name)
+        ->where('user_id', $user_id)
+        ->first();
+        $result = [
+            'unit'=>$get_units
+        ];
+        return json_encode($result);
     }
 }

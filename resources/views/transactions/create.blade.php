@@ -23,10 +23,10 @@
                                 <input type="hidden" name="user_id" value="{{ $user->id }}">
                                 <div class="form-group">
                                     <label for="product_name">Product Name</label>
-                                    <select class="form-control" id="product_name" name="product_id">
+                                    <select class="form-control" id="product_name" name="product_name">
                                         <option>-</option>
                                         @foreach ($data as $product) 
-                                            <option value="{{$product->id}}">{{ $product->product_name }}</option>
+                                            <option value="{{$product->id}}-{{$product->product_name}}-{{$user->id}}">{{ $product->product_name }}</option>
                                          @endforeach;
                                     </select>
                                 </div> 
@@ -46,7 +46,7 @@
                                     <label for="quantity">Quantity</label>
                                     <input type="text" class="form-control" id="quantity" name="quantity" placeholder="quantity...">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" id="unit_container">
                                     <label for="unit">Unit</label>
                                     <input type="text" class="form-control" id="unit" name="unit" placeholder="unit...">
                                 </div>
@@ -55,7 +55,7 @@
                                     <input type="text" class="form-control" id="price" name="price" placeholder="price...">
                                 </div>
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-dark btn-lg">Add Product</button>
+                                    <button type="submit" class="btn btn-dark btn-lg">Add Transaction</button>
                                 </div>
                             </form>
                         </div>
@@ -66,3 +66,7 @@
 
     </div>
 @stop
+
+@section('scripts')
+    @include('scripts.transactions-create-js')
+@endsection

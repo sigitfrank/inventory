@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Transactions;
 use App\Http\Controllers\Controller;
 use App\Models\Transaction\Transaction;
 use App\Models\Product\Product;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -41,7 +42,9 @@ class TransactionController extends Controller
     public function create()
     {
         //
-        $products = Product::all();
+        $products =DB::table('products')
+        ->groupBy('product_name')
+        ->get();
         $data_view = [
             'page' => 'transactions.create',
             'data' => $products,
@@ -58,15 +61,27 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'product_id' => 'required',
+            'product_name' => 'required',
             'date' => 'required',
             'type' => 'required',
             'quantity' => 'required',
             'unit' => 'required',
             'price' => 'required'
         ]);
-        $is_transaction_added = Transaction::create($request->all());
-        if ($is_transaction_added ) {
+
+        $product = new Product();
+        $update_product = $product->updateProductAfterTransaction($request);
+        $is_transaction_added = DB::table('transactions')
+        ->insert([
+            'product_id' => explode('-',$request->input('product_name'))[0],
+            'user_id' => explode('-',$request->input('product_name'))[2],
+            'date' => $request->input('date'),
+            'type' => $request->input('type'),
+            'quantity' => $request->input('quantity'),
+            'unit' => $request->input('unit'),
+            'price' => $request->input('price')
+        ]);
+        if ($is_transaction_added && $update_product) {
             return redirect(route('transactions'))->with('alert', 'Transaction added succesfully')->with('status', true);
         }
         return redirect(route('transactions'))->with('alert', 'Transaction failed to add')->with('status', false);

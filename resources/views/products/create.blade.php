@@ -20,6 +20,7 @@
                         <div class="card-body">
                               <form action="{{route('products/store')}}" class="form" method="post">
                                   @csrf
+                                  <input type="hidden" name="user_id" value="{{$user->id}}">
                                 <div class="form-group">
                                     <label for="product_name">Product Name</label>
                                     <input type="text" class="form-control" name="product_name"  value="{{ old('product_name') }}"  id="product_name" placeholder="ex: Buku">

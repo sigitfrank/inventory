@@ -54,4 +54,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/modules', [ModuleController::class, 'index'])->name('modules');
     Route::get('/modules/create', [ModuleController::class, 'create'])->name('modules/create');
     Route::delete('/modules/{module}', [ModuleController::class, 'destroy'])->name('modules/destroy');
+
+    // Get Unit
+    Route::post('/products/unit', [ProductsController::class, 'getUnit'])->name('products/unit');
 });
